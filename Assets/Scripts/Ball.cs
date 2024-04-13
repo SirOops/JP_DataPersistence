@@ -6,6 +6,10 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private Rigidbody m_Rigidbody;
+    public GameObject DustPrefab;
+    public AudioSource audioSource;
+    public AudioClip audioClipBounce;
+    public Animator animator;
 
     void Start()
     {
@@ -32,5 +36,15 @@ public class Ball : MonoBehaviour
         }
 
         m_Rigidbody.velocity = velocity;
+
+  
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Instantiate(DustPrefab, transform.position, Quaternion.identity);
+        audioSource.PlayOneShot(audioClipBounce);
+        animator.SetTrigger("triggerWobble");
+
     }
 }

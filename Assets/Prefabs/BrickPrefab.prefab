@@ -111,4 +111,7 @@ MonoBehaviour:
   onDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  BrickExplosionPrefab: {fileID: 5757676426807492294, guid: 12896f828d4047c4fab894b1212f6c49, type: 3}
+  audioSource: {fileID: 0}
+  audioClipBoom: {fileID: 8300000, guid: 46fea8a25f524ce45b4108f59b581e4d, type: 3}
   PointValue: 0
