@@ -13,6 +13,8 @@ public class MainMenu : MonoBehaviour
     public Button highScoreButton;
     public Button exitButton;
 
+    public bool firstSceneChange;
+
     [SerializeField] private TMPro.TextMeshProUGUI highScoreText;
 
     private string currentPlayerName;
@@ -20,6 +22,7 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         Debug.Log("I am awake " + this.name);
+        firstSceneChange = PlayerDataManager.Instance.firstSceneChange;
     }
 
     void Start()
@@ -27,8 +30,10 @@ public class MainMenu : MonoBehaviour
         startButton.onClick.AddListener(StartGame);
         highScoreButton.onClick.AddListener(ShowHighScores);
         exitButton.onClick.AddListener(Exit);
-
-        LoadPlayerData();
+        if (!firstSceneChange)
+        {
+            LoadPlayerData();
+        }
         highScoreText.text = PlayerDataManager.Instance.LoadTopHighScoreAsString();
     }
 
@@ -55,7 +60,7 @@ public class MainMenu : MonoBehaviour
         }
 
         SavePlayerData(playerName);
-
+        PlayerDataManager.Instance.firstSceneChange = false;
         Debug.Log("Starting game for player: " + playerName);
         SceneManager.LoadScene("MainGameScene");
     }

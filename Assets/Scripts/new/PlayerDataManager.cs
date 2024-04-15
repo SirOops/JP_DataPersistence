@@ -13,6 +13,8 @@ public class PlayerDataManager : MonoBehaviour
     private string playerName;
     private List<HighScoreEntry> highScoreList = new List<HighScoreEntry>();
 
+    public bool firstSceneChange = true;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
